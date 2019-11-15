@@ -31,8 +31,10 @@ public class BishopBlack implements Figure {
         Cell[] steps = new Cell[size];
         int deltaX = source.x < dest.x ? 1 : -1;
         int deltaY = source.y < dest.y ? 1 : -1;
+        Cell last = source;
         for (int index = 0; index < size; index++) {
-            steps[index] = Cell.values()[source.ordinal() + 8 * ((deltaX > 0) ? deltaX++ : deltaX--) + (deltaY > 0 ? deltaY++ : deltaY--)];
+            last = Cell.findBy(last.x + deltaX, last.y + deltaY);
+            steps[index] = last;
         }
         return steps;
     }
